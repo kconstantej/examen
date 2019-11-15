@@ -1,9 +1,11 @@
 var fs = require('fs');
 var dir = './resultados';
+const {crearArchivo}=require('./buscador/buscar');
+const {listar}=require('./buscador/buscar');
+
 
 if (!fs.existsSync(dir)){
     fs.mkdirSync(dir);
-    console.log('carpeta creada')
 }
 
 let {argv}=require('./config/yargs')
@@ -12,7 +14,7 @@ let comando = argv._[0]
 switch(comando){
     case 'mostrar':
         console.log("crear...");
-        crearArchivo(argv.base,argv.limite)
+        crearArchivo(argv.archivo,argv.pais,argv.anio)
         .then(archivo => console.log(`Arachivo creado: ${archivo}`.green))
         .catch(e=>console.log(e.red));
         break;
