@@ -3,16 +3,6 @@ var datos_archivo
 //se crea una promesa
 let crearArchivo = (archivo,pais,anio)=>{
     return new Promise((resolve,reject)=>{
-        
-        if (!fs.existsSync(archivo)){
-            reject('el archivo no existe')
-            return;
-        }else{
-            if (!Number(anio)){
-                reject('el anio no es un numero')
-                return;
-            }else{
-                console.log('entraaaaa')
                 fs.readFile(archivo, 'utf8', function (err, data) {
                     var dataArray = data.split(/\r?\n/);
                     var a =dataArray[4].split(',')
@@ -33,7 +23,7 @@ let crearArchivo = (archivo,pais,anio)=>{
                     }
                     resolve(datos_archivo)
                 });
-        }}
+        
     });
 }
 
